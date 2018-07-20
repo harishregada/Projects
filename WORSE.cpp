@@ -1,20 +1,25 @@
 #include<iostream>
+#include<stdlib.h>
 #include<windows.h>
 #include<cstdlib>
 #include<mysql.h>
 #include<string>
 #include"Multi_Mains.h"
 //#include<bits/stdc++.h>
-/*
+
 using namespace std;
+
+///std::string s = std::to_string(number);
+///char const *pchar = s.c_str();  //use char const* as target type
+
 
 //This Is An ATM!!!, Not A Bank. Point To Be Noted
 
 int old_pin,new_pin1=0,new_pin2=1;    //new_pin1, new_pin2 were 0 and 1??
 int pin,bal,choice;
 
-char PIN[4];  //PIN from DB
-char BALANCE[5];  //BALANCE from DB
+//char PIN[4];  //PIN from DB
+//char BALANCE[5];  //BALANCE from DB
 
 char confirm;
 
@@ -26,6 +31,7 @@ int main()
 
     int qstate;
     char* help[2];
+    string s;
 
     int convert[4];  ///This could change the program
     int index=0;
@@ -54,7 +60,7 @@ int main()
     system("ping localhost -n 2 >nul");
     system("cls");
     */
-/*
+
     conn=mysql_real_connect(conn,"localhost","root","","bankdetails",0,NULL,0);
 
     if(conn)
@@ -73,11 +79,11 @@ int main()
              {
                  help[index]=row[0];    //First Row of 1st Column then 2nd Column
 
-                 system("cls");
+                 //system("cls");
                  cout<<"HELP : "<<help[index]<<endl;
 
-                 system("echo.");
-                 system("ping localhost -n 3 >nul");
+                 //system("echo.");
+                 //system("ping localhost -n 3 >nul");
 
                  index++;
              }
@@ -101,11 +107,18 @@ int main()
     //PIN=help[0];
     //BALANCE=help[1];
 
-    char pin_help[5],bal_help[5];
+    //char pin_help[5],bal_help[5];
 
-    strcpy(pin_help,help[0]);
-    strcpy(bal_help,help[1]);
-    cout<<"PIN : "<<pin_help<<endl<<"BALANCE : "<<bal_help<<endl;
+    pin=atoi(help[0]);
+    bal=atoi(help[1]);
+    cout<<"pin : "<<pin<<endl<<"bal : "<<bal<<endl;
+
+    ///row=mysql_fetch_row(res);
+    ///cout<<"\n\nROW[0] : "<<row[0]<<endl<<"ROW[1] : "<<row[1]<<endl;
+
+    //strcpy(pin_help,help[0]);
+    //strcpy(bal_help,help[1]);
+    //cout<<"PIN : "<<pin_help<<endl<<"BALANCE : "<<bal_help<<endl;
 
     system("pause");
     system("cls");
@@ -143,7 +156,7 @@ int main()
 		cout<<"\nEnter Your Pin : ";
 		cin>>pin_check;
 
-		if(pin_check==1024) ///pin_check==PIN or pin    ///Here we go...  Need to typecast
+		if(pin_check==pin) ///pin_check==PIN or pin    ///Here we go...  Need to typecast
 		break;
 
 		else	//if(pin_check!=pin)
@@ -217,7 +230,7 @@ int main()
 
 				if(withdraw<bal)
 				{
-					fflush(stdin);
+					//fflush(stdin);
 					cout<<"\nAmount To Withdraw Rs."<<withdraw<<endl;
 					cout<<"Enter Y To Confirm or N To Cancel : ";
 					cin>>confirm;
@@ -227,9 +240,19 @@ int main()
 				{
 					system("cls");
 					bal=bal-withdraw;
+
+					///std::string s = std::to_string(number);
+                    ///char const *pchar = s.c_str();  //use char const* as target type
+
+                    //
+                    s = to_string(bal);
+                    //help[1] = s.c_str();  //use char const* as target type
+                    //atoi();
+
 					cout<<"\n\nTransaction Completed :)";
 					cout<<"\nBalance Remaining : "<<bal;
 
+					cout<<"\n\nhelp[1](bal) = "<<help[1]<<endl;
 					cout<<endl;
 					system("pause");    //Press Any Key To Continue..
 
@@ -292,4 +315,4 @@ int main()
 	return (0);
 }
 
-*/
+
